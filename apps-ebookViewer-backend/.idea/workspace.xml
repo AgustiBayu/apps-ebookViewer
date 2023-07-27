@@ -31,6 +31,9 @@
       </MavenGeneralSettings>
     </option>
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
+  </component>
   <component name="ProjectId" id="2SWgfwRb5zDEXk9sNnU8H6A2qSz" />
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
@@ -79,7 +82,16 @@
       <updated>1689267860509</updated>
       <workItem from="1689267861548" duration="4438000" />
       <workItem from="1689272351132" duration="3077000" />
-      <workItem from="1689300197854" duration="1874000" />
+      <workItem from="1689300197854" duration="13175000" />
+      <workItem from="1689517429664" duration="180000" />
+      <workItem from="1689528392929" duration="167000" />
+      <workItem from="1689528687309" duration="3570000" />
+      <workItem from="1689601388606" duration="3018000" />
+      <workItem from="1689703378289" duration="7916000" />
+      <workItem from="1689865083702" duration="10309000" />
+      <workItem from="1689949955173" duration="2788000" />
+      <workItem from="1689952778076" duration="46000" />
+      <workItem from="1690383826994" duration="24783000" />
     </task>
     <servers />
   </component>
