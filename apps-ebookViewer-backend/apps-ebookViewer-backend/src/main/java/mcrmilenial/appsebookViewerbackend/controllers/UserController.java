@@ -16,7 +16,7 @@ public class UserController {
     public User creteUser(@RequestBody User user) {
         return userService.create(user);
     }
-    @GetMapping(path = "/readUser")
+    @GetMapping(path = "/getUser")
     public List<User> findAll() {
         return userService.findAll();
     }
@@ -24,12 +24,12 @@ public class UserController {
     public User updateUser(@RequestBody User user) {
         return userService.update(user);
     }
-    @DeleteMapping(path = "/delete/{id}")
+    @DeleteMapping(path = "/deleteUser/{id}")
     public void deleteById(@PathVariable("id") int user_id) {
         userService.deleteById(user_id);
     }
-    @GetMapping(path = "/read/{id}")
-    public User findById(int user_id) {
+    @GetMapping(path = "/getUser/{id}")
+    public User findById(@PathVariable("id") int user_id) {
         return userService.findByid(user_id);
     }
 }

@@ -31,12 +31,17 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeHttpRequests()
-                .antMatchers(HttpMethod.POST, "/api/addUser").hasRole("ADMIN")
-                .antMatchers(HttpMethod.GET, "/api/readUser").permitAll()
-                .antMatchers(HttpMethod.PUT, "/api/updateUser/**").hasRole("STAF")
-                .antMatchers(HttpMethod.PUT, "/api/updateUser/**").hasRole("STAF")
-                .antMatchers(HttpMethod.DELETE, "/api/delete/{id}").hasRole("ADMIN")
-                .antMatchers(HttpMethod.GET, "/api/read/{id}").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/addUser").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/getUser").permitAll()
+                .antMatchers(HttpMethod.PUT, "/api/updateUser/**").permitAll()
+                .antMatchers(HttpMethod.PUT, "/api/updateUser/**").permitAll()
+                .antMatchers(HttpMethod.DELETE, "/api/delete/{id}").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/getUser/{id}").permitAll()
+
+                .antMatchers(HttpMethod.POST,"/apikey/addRoles").permitAll()
+                .antMatchers(HttpMethod.GET,"/apikey/getRoles").permitAll()
+                .antMatchers(HttpMethod.PUT,"/apikey/updateRoles/**").permitAll()
+                .antMatchers(HttpMethod.DELETE,"/apikey/deleteRoles/{id}").permitAll()
                 .anyRequest().authenticated();
     }
 }
