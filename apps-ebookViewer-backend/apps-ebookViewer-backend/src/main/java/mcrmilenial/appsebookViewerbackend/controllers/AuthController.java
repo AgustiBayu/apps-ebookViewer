@@ -78,7 +78,7 @@ public class AuthController {
         Set<String> userRoles = signUpRequest.getRoles();
         Set<Role> roles = new HashSet<>();
         if (userRoles == null) {
-            Role mahasiswaRole = roleRepository.findByName(StatusRoles.HASASISWA)
+            Role mahasiswaRole = roleRepository.findByName(StatusRoles.MAHASISWA)
                     .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
             roles.add(mahasiswaRole);
         } else {
@@ -97,7 +97,7 @@ public class AuthController {
 
                         break;
                     default:
-                        Role mahasiswaRole = roleRepository.findByName(StatusRoles.HASASISWA)
+                        Role mahasiswaRole = roleRepository.findByName(StatusRoles.MAHASISWA)
                                 .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
                         roles.add(mahasiswaRole);
                 }

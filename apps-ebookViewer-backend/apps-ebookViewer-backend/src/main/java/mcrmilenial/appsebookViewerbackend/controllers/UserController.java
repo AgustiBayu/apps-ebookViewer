@@ -3,12 +3,14 @@ package mcrmilenial.appsebookViewerbackend.controllers;
 import mcrmilenial.appsebookViewerbackend.entities.User;
 import mcrmilenial.appsebookViewerbackend.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping(path = "/api")
+@PreAuthorize("isAuthenticated()")
 public class UserController {
     @Autowired
     private UserService userService;
