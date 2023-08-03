@@ -1,6 +1,6 @@
 package mcrmilenial.appsebookViewerbackend.services;
 
-import mcrmilenial.appsebookViewerbackend.entitys.Role;
+import mcrmilenial.appsebookViewerbackend.entities.Role;
 import mcrmilenial.appsebookViewerbackend.repositorys.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,7 +20,7 @@ public class RoleService {
     public Role update(Role roles) {
         return roleRepository.save(roles);
     }
-    public void deleteById(int roles_id) {
+    public void deleteById(long roles_id) {
         roleRepository.deleteById(roles_id);
     }
 }

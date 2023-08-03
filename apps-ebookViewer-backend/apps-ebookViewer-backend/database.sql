@@ -1,8 +1,11 @@
-select * from roles;
 select * from users;
+select * from bibliographic;
+select * from roles;
 select * from user_roles;
 
-insert into user_roles values
-(4,3),
-(2,2),
-(3,3);
+INSERT INTO roles(name) VALUES
+('ADMIN'),
+('DOSEN'),
+('MAHASISWA');
+
+drop database ebookviewer;

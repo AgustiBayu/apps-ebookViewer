@@ -1,7 +1,8 @@
-package mcrmilenial.appsebookViewerbackend.entitys;
+package mcrmilenial.appsebookViewerbackend.entities;
 
 import lombok.Getter;
 import lombok.Setter;
+import mcrmilenial.appsebookViewerbackend.models.StatusRoles;
 
 import javax.persistence.*;
 
@@ -13,5 +14,6 @@ public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int roles_id;
-    private String name;
+    @Enumerated(value = EnumType.STRING)
+    private StatusRoles name;
 }

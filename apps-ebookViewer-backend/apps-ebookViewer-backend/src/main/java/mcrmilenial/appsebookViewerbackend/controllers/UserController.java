@@ -1,6 +1,6 @@
 package mcrmilenial.appsebookViewerbackend.controllers;
 
-import mcrmilenial.appsebookViewerbackend.entitys.User;
+import mcrmilenial.appsebookViewerbackend.entities.User;
 import mcrmilenial.appsebookViewerbackend.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "api")
+@RequestMapping(path = "/api")
 public class UserController {
     @Autowired
     private UserService userService;

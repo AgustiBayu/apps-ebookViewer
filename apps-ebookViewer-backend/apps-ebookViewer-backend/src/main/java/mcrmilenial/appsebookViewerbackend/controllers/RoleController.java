@@ -1,6 +1,6 @@
 package mcrmilenial.appsebookViewerbackend.controllers;
 
-import mcrmilenial.appsebookViewerbackend.entitys.Role;
+import mcrmilenial.appsebookViewerbackend.entities.Role;
 import mcrmilenial.appsebookViewerbackend.services.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/apikey")
+@RequestMapping(path = "/api")
 public class RoleController {
     @Autowired
     private RoleService rolesService;
