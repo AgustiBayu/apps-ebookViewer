@@ -17,6 +17,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -25,8 +28,11 @@ public class WebSecurityConfig {
     @Autowired
     private AuthEntryPointJwt unauthorizedHandler;
     @Autowired
-    UserDetailsServiceImpl userDetailsService;
-
+    private UserDetailsServiceImpl userDetailsService;
+    /*
+        fungsi bean securityfilterchain ini digunakan untuk security akses yang akan diberikan kepada
+        end point/api
+     */
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.cors()
@@ -38,7 +44,10 @@ public class WebSecurityConfig {
         http.addFilterBefore(authTokenFilter(), UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
-
+    /*
+        fungsi DaoAuthenticationProvider ini digunakan untuk proses validasi identitas
+        yang akan menggunakan/memasukin pada suatu system yang disimpan pada database
+     */
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
@@ -48,7 +57,10 @@ public class WebSecurityConfig {
 
         return authProvider;
     }
-
+    /*
+        fungsi authTokenFilter digunakan untuk validasi token pengguna yang nantinya akan
+        mengakses end point/api
+     */
     @Bean
     AuthTokenFilter authTokenFilter() {
         return new AuthTokenFilter();
@@ -62,6 +74,25 @@ public class WebSecurityConfig {
     AuthenticationManager authenticationManager(AuthenticationConfiguration authentication) throws Exception {
         return authentication.getAuthenticationManager();
     }
+
+    @Bean
+    public CorsFilter corsFilter() {
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        CorsConfiguration config = new CorsConfiguration();
+        config.addAllowedOrigin("http://10.10.16.161:8080");
+        config.setAllowCredentials(true);
+        config.addAllowedHeader("*");
+        config.addAllowedMethod("OPTIONS");
+        config.addAllowedMethod("POST");
+        config.addAllowedMethod("GET");
+        config.addAllowedMethod("PUT");
+        config.addAllowedMethod("DELETE");
+        config.addAllowedMethod("PATCH");
+        source.registerCorsConfiguration("/**", config);
+        return new CorsFilter(source);
+
+    }
+
 //    @Bean
 //    public BCryptPasswordEncoder bCryptPasswordEncoder() {
 //        return new BCryptPasswordEncoder();

@@ -21,25 +21,25 @@ public class UserService {
 //    BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
-    PasswordEncoder encoder;
+    PasswordEncoder encoder; // digunakan untuk encrype data
 
-    public User create(User user) {
+    public User create(User user) { // digunakan untuk menambah data
         if (!StringUtils.hasText(user.getUsername())) {
             throw new BadRequestException("username is not null");
         } else if (!StringUtils.hasText(user.getPassword())) {
             throw new BadRequestException("password is not null");
         } else {
-            user.setPassword(encoder.encode(user.getPassword()));
+            user.setPassword(encoder.encode(user.getPassword()));// impl password encode agar pasword ke encrype
             return userRepository.save(user);
         }
     }
 
-    public List<User> findAll() {
+    public List<User> findAll() { // digunakan untuk menampikan data
         return userRepository.findAll();
     }
 
-    public User update(User user) {
-        if (!StringUtils.hasText(user.getUsername())) {
+    public User update(User user) { // digunakan untuk updata/merubah data
+        if (!StringUtils.hasText(user.getUsername())) { // membandikan data tidak null dengan identifikasi !StringUtils.hasText bertipe data stiring a
             throw new BadRequestException("username is not null");
         } else if (!StringUtils.hasText(user.getPassword())) {
             throw new BadRequestException("password is not null");
@@ -48,11 +48,11 @@ public class UserService {
         }
     }
 
-    public void deleteById(long user_id) {
+    public void deleteById(long user_id) { // digunakan untuk menghapus berdasarkan dengan id
         userRepository.deleteById(user_id);
     }
 
-    public User findByid(long user_id) {
+    public User findByid(long user_id) { // digunakan untuk filtering data berdasarakan dengan id
         return userRepository.findById(user_id)
                 .orElseThrow(() -> new RecouseNotFoundException("Pnegguna id " + user_id + " Tidak ada"));
     }

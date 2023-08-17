@@ -11,9 +11,9 @@
 4||10|c|G
 4||10|C|G
 4||10|T|G</Grants>
-      <IntrospectionStateNumber>1114</IntrospectionStateNumber>
+      <IntrospectionStateNumber>1288</IntrospectionStateNumber>
       <ServerVersion>15.2</ServerVersion>
-      <StartupTime>1690693074</StartupTime>
+      <StartupTime>1692284488</StartupTime>
       <TimeZones>true ACDT
 true ACSST
 false ACST
@@ -809,7 +809,7 @@ false Zulu
 13183||10|C|G
 13183||-9223372036854775808|U|G
 13183||10|U|G</Grants>
-      <IntrospectionStateNumber>1114</IntrospectionStateNumber>
+      <IntrospectionStateNumber>1288</IntrospectionStateNumber>
       <ObjectId>49997</ObjectId>
       <OwnerName>postgres</OwnerName>
     </database>
@@ -4243,15 +4243,15 @@ false Zulu
     <schema id="266" parent="2" name="public">
       <Comment>standard public schema</Comment>
       <Current>1</Current>
-      <IntrospectionStateNumber>1114</IntrospectionStateNumber>
+      <IntrospectionStateNumber>1288</IntrospectionStateNumber>
       <ObjectId>2200</ObjectId>
       <StateNumber>518</StateNumber>
       <OwnerName>pg_database_owner</OwnerName>
     </schema>
     <sequence id="267" parent="266" name="bibliographic_biblion_id_seq">
       <DasType>integer|0s</DasType>
-      <ObjectId>50150</ObjectId>
-      <StateNumber>1109</StateNumber>
+      <ObjectId>58654</ObjectId>
+      <StateNumber>1278</StateNumber>
       <OwnerName>postgres</OwnerName>
     </sequence>
     <sequence id="268" parent="266" name="hibernate_sequence">
@@ -4262,290 +4262,265 @@ false Zulu
     </sequence>
     <sequence id="269" parent="266" name="roles_roles_id_seq">
       <DasType>integer|0s</DasType>
-      <ObjectId>50158</ObjectId>
-      <StateNumber>1110</StateNumber>
+      <ObjectId>58662</ObjectId>
+      <StateNumber>1279</StateNumber>
       <OwnerName>postgres</OwnerName>
     </sequence>
     <sequence id="270" parent="266" name="users_user_id_seq">
       <DasType>integer|0s</DasType>
-      <ObjectId>50164</ObjectId>
-      <StateNumber>1111</StateNumber>
+      <ObjectId>58673</ObjectId>
+      <StateNumber>1281</StateNumber>
       <OwnerName>postgres</OwnerName>
     </sequence>
     <table id="271" parent="266" name="bibliographic">
-      <ObjectId>50151</ObjectId>
-      <StateNumber>1112</StateNumber>
+      <ObjectId>58655</ObjectId>
+      <StateNumber>1282</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
     <table id="272" parent="266" name="roles">
-      <ObjectId>50159</ObjectId>
-      <StateNumber>1113</StateNumber>
+      <ObjectId>58663</ObjectId>
+      <StateNumber>1283</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <table id="273" parent="266" name="users">
-      <ObjectId>50165</ObjectId>
-      <StateNumber>1112</StateNumber>
+    <table id="273" parent="266" name="user_roles">
+      <ObjectId>58668</ObjectId>
+      <StateNumber>1283</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <column id="274" parent="271" name="biblion_id">
+    <table id="274" parent="266" name="users">
+      <ObjectId>58674</ObjectId>
+      <StateNumber>1282</StateNumber>
+      <AccessMethodId>2</AccessMethodId>
+      <OwnerName>postgres</OwnerName>
+    </table>
+    <column id="275" parent="271" name="biblion_id">
       <DasType>integer|0s</DasType>
       <IdentityKind>by-default</IdentityKind>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <StateNumber>1109</StateNumber>
-      <SequenceId>50150</SequenceId>
+      <StateNumber>1278</StateNumber>
+      <SequenceId>58654</SequenceId>
       <TypeId>23</TypeId>
     </column>
-    <column id="275" parent="271" name="author">
+    <column id="276" parent="271" name="author">
       <DasType>varchar(255)|0s</DasType>
       <Position>2</Position>
-      <StateNumber>1109</StateNumber>
+      <StateNumber>1278</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="276" parent="271" name="carrier_type">
+    <column id="277" parent="271" name="edition">
       <DasType>varchar(255)|0s</DasType>
       <Position>3</Position>
-      <StateNumber>1109</StateNumber>
+      <StateNumber>1278</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="277" parent="271" name="content_type">
+    <column id="278" parent="271" name="file">
       <DasType>varchar(255)|0s</DasType>
       <Position>4</Position>
-      <StateNumber>1109</StateNumber>
+      <StateNumber>1278</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="278" parent="271" name="edition">
+    <column id="279" parent="271" name="image">
       <DasType>varchar(255)|0s</DasType>
       <Position>5</Position>
-      <StateNumber>1109</StateNumber>
+      <StateNumber>1278</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="279" parent="271" name="file">
+    <column id="280" parent="271" name="no_register">
       <DasType>varchar(255)|0s</DasType>
       <Position>6</Position>
-      <StateNumber>1109</StateNumber>
+      <StateNumber>1278</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="280" parent="271" name="frequency">
+    <column id="281" parent="271" name="publisher">
       <DasType>varchar(255)|0s</DasType>
       <Position>7</Position>
-      <StateNumber>1109</StateNumber>
+      <StateNumber>1278</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="281" parent="271" name="gmd">
+    <column id="282" parent="271" name="publisher_place">
       <DasType>varchar(255)|0s</DasType>
       <Position>8</Position>
-      <StateNumber>1109</StateNumber>
+      <StateNumber>1278</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="282" parent="271" name="hide_in_opac">
+    <column id="283" parent="271" name="publisher_year">
       <DasType>varchar(255)|0s</DasType>
       <Position>9</Position>
-      <StateNumber>1109</StateNumber>
+      <StateNumber>1278</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="283" parent="271" name="image">
+    <column id="284" parent="271" name="subjek">
       <DasType>varchar(255)|0s</DasType>
       <Position>10</Position>
-      <StateNumber>1109</StateNumber>
+      <StateNumber>1278</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="284" parent="271" name="isbn_issn">
+    <column id="285" parent="271" name="title">
       <DasType>varchar(255)|0s</DasType>
       <Position>11</Position>
-      <StateNumber>1109</StateNumber>
+      <StateNumber>1278</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="285" parent="271" name="item_code_batch_generator">
-      <DasType>varchar(255)|0s</DasType>
-      <Position>12</Position>
-      <StateNumber>1109</StateNumber>
-      <TypeId>1043</TypeId>
-    </column>
-    <column id="286" parent="271" name="media_type">
-      <DasType>varchar(255)|0s</DasType>
-      <Position>13</Position>
-      <StateNumber>1109</StateNumber>
-      <TypeId>1043</TypeId>
-    </column>
-    <column id="287" parent="271" name="publisher">
-      <DasType>varchar(255)|0s</DasType>
-      <Position>14</Position>
-      <StateNumber>1109</StateNumber>
-      <TypeId>1043</TypeId>
-    </column>
-    <column id="288" parent="271" name="publisher_place">
-      <DasType>varchar(255)|0s</DasType>
-      <Position>15</Position>
-      <StateNumber>1109</StateNumber>
-      <TypeId>1043</TypeId>
-    </column>
-    <column id="289" parent="271" name="publisher_year">
-      <DasType>varchar(255)|0s</DasType>
-      <Position>16</Position>
-      <StateNumber>1109</StateNumber>
-      <TypeId>1043</TypeId>
-    </column>
-    <column id="290" parent="271" name="related_biblio_data">
-      <DasType>varchar(255)|0s</DasType>
-      <Position>17</Position>
-      <StateNumber>1109</StateNumber>
-      <TypeId>1043</TypeId>
-    </column>
-    <column id="291" parent="271" name="specific_detail_info">
-      <DasType>varchar(255)|0s</DasType>
-      <Position>18</Position>
-      <StateNumber>1109</StateNumber>
-      <TypeId>1043</TypeId>
-    </column>
-    <column id="292" parent="271" name="statement_of_resconsibility">
-      <DasType>varchar(255)|0s</DasType>
-      <Position>19</Position>
-      <StateNumber>1109</StateNumber>
-      <TypeId>1043</TypeId>
-    </column>
-    <column id="293" parent="271" name="title">
-      <DasType>varchar(255)|0s</DasType>
-      <Position>20</Position>
-      <StateNumber>1109</StateNumber>
-      <TypeId>1043</TypeId>
-    </column>
-    <column id="294" parent="271" name="user_id">
+    <column id="286" parent="271" name="user_id">
       <DasType>integer|0s</DasType>
-      <Position>21</Position>
-      <StateNumber>1109</StateNumber>
+      <Position>12</Position>
+      <StateNumber>1278</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <foreign-key id="295" parent="271" name="fknnp39ye52lkgdgeg8am4gpih9">
+    <foreign-key id="287" parent="271" name="fknnp39ye52lkgdgeg8am4gpih9">
       <ColNames>user_id</ColNames>
-      <ObjectId>50172</ObjectId>
+      <ObjectId>58681</ObjectId>
       <RefColNames>user_id</RefColNames>
       <RefColPositions>1</RefColPositions>
-      <StateNumber>1112</StateNumber>
-      <RefTableId>50165</RefTableId>
+      <StateNumber>1282</StateNumber>
+      <RefTableId>58674</RefTableId>
       <RefTableName>users</RefTableName>
       <RefTableKind>table</RefTableKind>
     </foreign-key>
-    <index id="296" parent="271" name="bibliographic_pkey">
+    <index id="288" parent="271" name="bibliographic_pkey">
       <ColNames>biblion_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>50156</ObjectId>
+      <ObjectId>58660</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>1109</StateNumber>
+      <StateNumber>1278</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="297" parent="271" name="bibliographic_pkey">
+    <key id="289" parent="271" name="bibliographic_pkey">
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>50157</ObjectId>
+      <ObjectId>58661</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>1109</StateNumber>
-      <UnderlyingIndexId>50156</UnderlyingIndexId>
+      <StateNumber>1278</StateNumber>
+      <UnderlyingIndexId>58660</UnderlyingIndexId>
     </key>
-    <column id="298" parent="272" name="roles_id">
+    <column id="290" parent="272" name="roles_id">
       <DasType>integer|0s</DasType>
       <IdentityKind>by-default</IdentityKind>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <StateNumber>1110</StateNumber>
-      <SequenceId>50158</SequenceId>
+      <StateNumber>1279</StateNumber>
+      <SequenceId>58662</SequenceId>
       <TypeId>23</TypeId>
     </column>
-    <column id="299" parent="272" name="name">
+    <column id="291" parent="272" name="name">
       <DasType>varchar(255)|0s</DasType>
       <Position>2</Position>
-      <StateNumber>1110</StateNumber>
+      <StateNumber>1279</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <index id="300" parent="272" name="roles_pkey">
+    <index id="292" parent="272" name="roles_pkey">
       <ColNames>roles_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>50162</ObjectId>
+      <ObjectId>58666</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>1110</StateNumber>
+      <StateNumber>1279</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="301" parent="272" name="roles_pkey">
+    <key id="293" parent="272" name="roles_pkey">
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>50163</ObjectId>
+      <ObjectId>58667</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>1110</StateNumber>
-      <UnderlyingIndexId>50162</UnderlyingIndexId>
+      <StateNumber>1279</StateNumber>
+      <UnderlyingIndexId>58666</UnderlyingIndexId>
     </key>
-    <column id="302" parent="273" name="user_id">
+    <column id="294" parent="273" name="user_id">
       <DasType>integer|0s</DasType>
-      <IdentityKind>by-default</IdentityKind>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <StateNumber>1111</StateNumber>
-      <SequenceId>50164</SequenceId>
+      <StateNumber>1280</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="303" parent="273" name="alamat">
-      <DasType>varchar(255)|0s</DasType>
-      <Position>2</Position>
-      <StateNumber>1111</StateNumber>
-      <TypeId>1043</TypeId>
-    </column>
-    <column id="304" parent="273" name="email">
-      <DasType>varchar(255)|0s</DasType>
-      <Position>3</Position>
-      <StateNumber>1111</StateNumber>
-      <TypeId>1043</TypeId>
-    </column>
-    <column id="305" parent="273" name="hp">
-      <DasType>varchar(255)|0s</DasType>
-      <Position>4</Position>
-      <StateNumber>1111</StateNumber>
-      <TypeId>1043</TypeId>
-    </column>
-    <column id="306" parent="273" name="password">
-      <DasType>varchar(255)|0s</DasType>
-      <Position>5</Position>
-      <StateNumber>1111</StateNumber>
-      <TypeId>1043</TypeId>
-    </column>
-    <column id="307" parent="273" name="username">
-      <DasType>varchar(255)|0s</DasType>
-      <Position>6</Position>
-      <StateNumber>1111</StateNumber>
-      <TypeId>1043</TypeId>
-    </column>
-    <column id="308" parent="273" name="role_id">
+    <column id="295" parent="273" name="role_id">
       <DasType>integer|0s</DasType>
-      <Position>7</Position>
-      <StateNumber>1111</StateNumber>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StateNumber>1280</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <foreign-key id="309" parent="273" name="fkp56c1712k691lhsyewcssf40f">
+    <foreign-key id="296" parent="273" name="fkhfh9dx7w3ubf1co1vdev94g3f">
+      <ColNames>user_id</ColNames>
+      <ObjectId>58691</ObjectId>
+      <RefColNames>user_id</RefColNames>
+      <RefColPositions>1</RefColPositions>
+      <StateNumber>1284</StateNumber>
+      <RefTableId>58674</RefTableId>
+      <RefTableName>users</RefTableName>
+      <RefTableKind>table</RefTableKind>
+    </foreign-key>
+    <foreign-key id="297" parent="273" name="fkh8ciramu9cc9q3qcqiv4ue8a6">
       <ColNames>role_id</ColNames>
-      <ObjectId>50177</ObjectId>
+      <ObjectId>58686</ObjectId>
       <RefColNames>roles_id</RefColNames>
       <RefColPositions>1</RefColPositions>
-      <StateNumber>1113</StateNumber>
-      <RefTableId>50159</RefTableId>
+      <StateNumber>1283</StateNumber>
+      <RefTableId>58663</RefTableId>
       <RefTableName>roles</RefTableName>
       <RefTableKind>table</RefTableKind>
     </foreign-key>
-    <index id="310" parent="273" name="users_pkey">
-      <ColNames>user_id</ColNames>
+    <index id="298" parent="273" name="user_roles_pkey">
+      <ColNames>user_id
+role_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>50170</ObjectId>
+      <ObjectId>58671</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>1111</StateNumber>
+      <StateNumber>1280</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="311" parent="273" name="users_pkey">
+    <key id="299" parent="273" name="user_roles_pkey">
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>50171</ObjectId>
+      <ObjectId>58672</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>1111</StateNumber>
-      <UnderlyingIndexId>50170</UnderlyingIndexId>
+      <StateNumber>1280</StateNumber>
+      <UnderlyingIndexId>58671</UnderlyingIndexId>
+    </key>
+    <column id="300" parent="274" name="user_id">
+      <DasType>integer|0s</DasType>
+      <IdentityKind>by-default</IdentityKind>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StateNumber>1281</StateNumber>
+      <SequenceId>58673</SequenceId>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="301" parent="274" name="email">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>2</Position>
+      <StateNumber>1281</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="302" parent="274" name="password">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>3</Position>
+      <StateNumber>1281</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="303" parent="274" name="username">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>4</Position>
+      <StateNumber>1281</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <index id="304" parent="274" name="users_pkey">
+      <ColNames>user_id</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>58679</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>1281</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+    </index>
+    <key id="305" parent="274" name="users_pkey">
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>58680</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>1281</StateNumber>
+      <UnderlyingIndexId>58679</UnderlyingIndexId>
     </key>
   </database-model>
 </dataSource>

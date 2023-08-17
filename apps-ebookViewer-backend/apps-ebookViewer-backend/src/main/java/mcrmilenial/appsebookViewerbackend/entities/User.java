@@ -9,6 +9,7 @@ import java.util.Set;
 @Entity
 @Data
 @AllArgsConstructor
+
 @Table(name = "users")
 public class User {
     @Id
@@ -23,14 +24,14 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
-    public User() {
-
-    }
-
+    //constructor digunakan untuk generet data registrasi yang diberikan pada akses signup register
     public User(String username, String password, String email) {
         this.username = username;
         this.password = password;
         this.email = email;
+    }
+
+    public User() {
     }
 
     //    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)

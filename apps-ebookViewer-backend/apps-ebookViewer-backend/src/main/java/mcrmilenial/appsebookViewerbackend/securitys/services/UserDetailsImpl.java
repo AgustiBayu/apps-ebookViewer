@@ -49,8 +49,6 @@ public class UserDetailsImpl implements UserDetails {
                 user.getPassword(),
                 authorities);
     }
-
-
     @Override
     public boolean isAccountNonExpired() {
         // TODO Auto-generated method stub

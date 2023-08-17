@@ -11,16 +11,16 @@ import java.util.List;
 public class RoleService {
     @Autowired
     RoleRepository roleRepository;
-    public Role create(Role roles) {
+    public Role create(Role roles) { // digunakan untuk menambah data
         return roleRepository.save(roles);
     }
-    public List<Role> findAll() {
+    public List<Role> findAll() { // digunakan untuk menampilkan data
         return roleRepository.findAll();
     }
-    public Role update(Role roles) {
+    public Role update(Role roles) { // digunakan untuk update data
         return roleRepository.save(roles);
     }
-    public void deleteById(long roles_id) {
+    public void deleteById(int roles_id) { // digunakan untuk menghapus data
         roleRepository.deleteById(roles_id);
     }
 }

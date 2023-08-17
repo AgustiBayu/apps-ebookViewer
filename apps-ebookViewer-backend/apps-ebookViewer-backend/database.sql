@@ -9,3 +9,4 @@ INSERT INTO roles(name) VALUES
 ('MAHASISWA');
 
 drop database ebookviewer;
+drop table roles

@@ -15,20 +15,29 @@ public class BibliographicController {
     @Autowired
     private BibliographicService bibliographicService;
 
-    @PostMapping(path = "/addBibliographic")
+    @PostMapping(path = "/bibliographic")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public Bibliographic createBibliographic(@RequestBody Bibliographic bibliographic) {
         return bibliographicService.create(bibliographic);
     }
-    @GetMapping(path = "/getBibliographic")
+    @GetMapping(path = "/bibliographic")
+    @PreAuthorize("hasAnyRole('ADMIN','DOSEN','MAHASISWA')")
     public List<Bibliographic> findAll() {
         return bibliographicService.findAll();
     }
-    @PutMapping(path = "/updateBibliographic")
-    public Bibliographic updateBibliographic(@RequestBody Bibliographic bibliographic) {
+    @PutMapping(path = "/bibliographic/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN')")
+    public Bibliographic updateBibliographic(@PathVariable("id") @RequestBody Bibliographic bibliographic) {
         return bibliographicService.update(bibliographic);
     }
-    @DeleteMapping(path = "/delete/{id}")
+    @DeleteMapping(path = "/bibliographic/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void deleteById(@PathVariable("id") int biblion_id) {
         bibliographicService.deleteById(biblion_id);
+    }
+    @GetMapping(path = "/bibliographic/tile/pengarang")
+    @PreAuthorize("hasAnyRole('ADMIN','DOSEN','MAHASISWA')")
+    public List<Bibliographic> searchBook(@RequestParam String keyword) {
+        return bibliographicService.searchBook(keyword);
     }
 }
