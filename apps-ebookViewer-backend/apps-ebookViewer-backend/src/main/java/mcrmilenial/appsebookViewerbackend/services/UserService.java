@@ -3,8 +3,11 @@ package mcrmilenial.appsebookViewerbackend.services;
 import mcrmilenial.appsebookViewerbackend.entities.User;
 import mcrmilenial.appsebookViewerbackend.exeptions.BadRequestException;
 import mcrmilenial.appsebookViewerbackend.exeptions.RecouseNotFoundException;
+import mcrmilenial.appsebookViewerbackend.models.response.MessageResponse;
 import mcrmilenial.appsebookViewerbackend.repositorys.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -23,37 +26,44 @@ public class UserService {
     @Autowired
     PasswordEncoder encoder; // digunakan untuk encrype data
 
-    public User create(User user) { // digunakan untuk menambah data
+    public ResponseEntity<?> create(User user) { // digunakan untuk menambah data
         if (!StringUtils.hasText(user.getUsername())) {
             throw new BadRequestException("username is not null");
         } else if (!StringUtils.hasText(user.getPassword())) {
             throw new BadRequestException("password is not null");
         } else {
             user.setPassword(encoder.encode(user.getPassword()));// impl password encode agar pasword ke encrype
-            return userRepository.save(user);
+            userRepository.save(user);
+            return ResponseEntity.ok().body(new MessageResponse("200", "success"));
         }
     }
 
-    public List<User> findAll() { // digunakan untuk menampikan data
-        return userRepository.findAll();
+    public ResponseEntity<?> findAll() { // digunakan untuk menampikan data
+        List<User> users = userRepository.findAll();
+        if (users.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new MessageResponse("404", "user not found"));
+        } else {
+            return ResponseEntity.ok().body(users);
+        }
     }
 
-    public User update(User user) { // digunakan untuk updata/merubah data
+    public ResponseEntity<?> update(User user) { // digunakan untuk updata/merubah data
         if (!StringUtils.hasText(user.getUsername())) { // membandikan data tidak null dengan identifikasi !StringUtils.hasText bertipe data stiring a
             throw new BadRequestException("username is not null");
         } else if (!StringUtils.hasText(user.getPassword())) {
             throw new BadRequestException("password is not null");
         } else {
-            return userRepository.save(user);
+            userRepository.save(user);
+            return ResponseEntity.ok().body(new MessageResponse("200", "success"));
         }
     }
 
-    public void deleteById(long user_id) { // digunakan untuk menghapus berdasarkan dengan id
-        userRepository.deleteById(user_id);
-    }
-
-    public User findByid(long user_id) { // digunakan untuk filtering data berdasarakan dengan id
-        return userRepository.findById(user_id)
-                .orElseThrow(() -> new RecouseNotFoundException("Pnegguna id " + user_id + " Tidak ada"));
+    public ResponseEntity<?> deleteById(long user_id) { // digunakan untuk menghapus berdasarkan dengan id
+        if (userRepository.existsById(user_id)) {
+            userRepository.deleteById(user_id);
+            return ResponseEntity.ok().body(new MessageResponse("200", "success"));
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new MessageResponse("404", "user not found"));
+        }
     }
 }

@@ -62,9 +62,10 @@ public class AuthController {
             List<String> roles = principal.getAuthorities().stream()
                     .map(item -> item.getAuthority())
                     .collect(Collectors.toList());
-            return ResponseEntity.ok().body(new JwtResponse(token, principal.getUsername(), principal.getEmail(), roles,"success","200"));
+            MessageResponse messageResponse = new MessageResponse("200", "success");
+            return ResponseEntity.ok().body(new JwtResponse(token, principal.getUsername(), principal.getEmail(), roles.get(0), messageResponse));
         } catch (AuthenticationException exception) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("401");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new MessageResponse("401", "Authorization"));
         }
     }
 
@@ -72,9 +73,9 @@ public class AuthController {
     public ResponseEntity<?> registerUser(@RequestBody SignUpRequest signUpRequest) {
         try {
             if (userRepository.existsByUsername(signUpRequest.getUsername())) {
-                return ResponseEntity.badRequest().body(new MessageResponse("Error: Username Is Alredy"));
+                return ResponseEntity.badRequest().body(new MessageResponse("400", "Error: Username Is Alredy"));
             } else if (userRepository.existsByEmail(signUpRequest.getEmail())) {
-                return ResponseEntity.badRequest().body(new MessageResponse("Error: Email Is Alredy"));
+                return ResponseEntity.badRequest().body(new MessageResponse("400", "Error: Email Is Alredy"));
             }
             User user = new User(
                     signUpRequest.getUsername(),
@@ -113,9 +114,9 @@ public class AuthController {
             userRepository.save(user);
 
             //return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
-            return ResponseEntity.ok().body(new JwtResponse("User registered successfullt!", "200"));
+            return ResponseEntity.ok().body(new MessageResponse("200", "User registered successfullt!"));
         } catch (AuthenticationException exception) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("401");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new MessageResponse("401", "Authorization"));
         }
     }
 }

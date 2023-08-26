@@ -3,6 +3,7 @@ package mcrmilenial.appsebookViewerbackend.controllers;
 import mcrmilenial.appsebookViewerbackend.entities.Role;
 import mcrmilenial.appsebookViewerbackend.services.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,19 +17,19 @@ public class RoleController {
     private RoleService rolesService;
 
     @PostMapping(path = "/addRoles")
-    public Role createRoles(@RequestBody Role roles) {
+    public ResponseEntity<?> createRoles(@RequestBody Role roles) {
         return rolesService.create(roles);
     }
     @GetMapping(path = "/getRoles")
-    public List<Role> findAll() {
+    public ResponseEntity<?> findAll() {
         return rolesService.findAll();
     }
     @PutMapping(path = "/updateRoles")
-    private Role updateUser(@RequestBody Role roles) {
+    private ResponseEntity<?> updateUser(@RequestBody Role roles) {
         return rolesService.update(roles);
     }
     @DeleteMapping(path = "/deleteRoles/{id}")
-    private void deleteByid(@PathVariable("id") int roles) {
-        rolesService.deleteById(roles);
+    private ResponseEntity<?> deleteByid(@PathVariable("id") int roles) {
+        return rolesService.deleteById(roles);
     }
 }

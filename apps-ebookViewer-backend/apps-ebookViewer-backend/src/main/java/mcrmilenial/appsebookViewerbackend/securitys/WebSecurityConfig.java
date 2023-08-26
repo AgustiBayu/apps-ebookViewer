@@ -79,7 +79,7 @@ public class WebSecurityConfig {
     public CorsFilter corsFilter() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
-        config.addAllowedOrigin("http://10.10.16.161:8080");
+        config.addAllowedOrigin("http://192.168.1.8:8080");
         config.setAllowCredentials(true);
         config.addAllowedHeader("*");
         config.addAllowedMethod("OPTIONS");

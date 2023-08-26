@@ -3,8 +3,10 @@ package mcrmilenial.appsebookViewerbackend.repositorys;
 import mcrmilenial.appsebookViewerbackend.entities.Role;
 import mcrmilenial.appsebookViewerbackend.models.StatusRoles;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 /*
     digunakan untuk mengakses data sql pada database dengan menggunakan metode jpa
