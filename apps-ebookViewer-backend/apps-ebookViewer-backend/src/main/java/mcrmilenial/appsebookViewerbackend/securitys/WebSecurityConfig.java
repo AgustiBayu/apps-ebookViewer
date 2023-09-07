@@ -1,5 +1,6 @@
 package mcrmilenial.appsebookViewerbackend.securitys;
 
+import mcrmilenial.appsebookViewerbackend.securitys.jwt.AccessDeniedHandlerJwt;
 import mcrmilenial.appsebookViewerbackend.securitys.jwt.AuthEntryPointJwt;
 import mcrmilenial.appsebookViewerbackend.securitys.jwt.AuthTokenFilter;
 import mcrmilenial.appsebookViewerbackend.securitys.services.UserDetailsServiceImpl;
@@ -33,11 +34,14 @@ public class WebSecurityConfig {
         fungsi bean securityfilterchain ini digunakan untuk security akses yang akan diberikan kepada
         end point/api
      */
+    @Autowired
+    private AccessDeniedHandlerJwt deniedHandler;
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.cors()
                 .and().csrf().disable().exceptionHandling()
                 .authenticationEntryPoint(unauthorizedHandler)
+                .accessDeniedHandler(deniedHandler)
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and().authorizeRequests().antMatchers("/auth/**").permitAll()
                 .antMatchers("/api/**").permitAll().anyRequest().authenticated();
