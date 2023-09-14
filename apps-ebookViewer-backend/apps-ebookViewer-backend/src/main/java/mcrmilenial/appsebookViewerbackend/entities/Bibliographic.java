@@ -13,6 +13,7 @@ public class Bibliographic {
     private int biblion_id;
     private String title;
     private String author;
+    private String abstrack;
     private String edition;
     private String no_register;
     private String publisher;

@@ -1,6 +1,7 @@
 package mcrmilenial.appsebookViewerbackend.entities;
 
 import lombok.*;
+import mcrmilenial.appsebookViewerbackend.models.StatusRoles;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -18,19 +19,20 @@ public class User {
     private String username;
     private String password;
     private String email;
-    @ManyToMany(fetch = FetchType.EAGER) // OR FetchType.LAZY
-    @JoinTable(name = "user_roles",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles = new HashSet<>();
+    @ManyToOne
+    @JoinColumn(name = "role_id")
+    private Roles role;
+
     //constructor digunakan untuk generet data registrasi yang diberikan pada akses signup register
     public User(String username, String password, String email) {
         this.username = username;
         this.password = password;
         this.email = email;
     }
+
     public User() {
     }
+
     //    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 //    @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id"),
 //    inverseJoinColumns = @JoinColumn(name = "roles_id", referencedColumnName = "roles_id"))

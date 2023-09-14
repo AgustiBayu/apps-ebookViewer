@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -25,7 +26,6 @@ public class UserService {
 
     @Autowired
     PasswordEncoder encoder; // digunakan untuk encrype data
-
     public ResponseEntity<?> create(User user) { // digunakan untuk menambah data
         if (!StringUtils.hasText(user.getUsername())) {
             throw new BadRequestException("username is not null");
@@ -37,7 +37,6 @@ public class UserService {
             return ResponseEntity.ok().body(new MessageResponse("200", "success"));
         }
     }
-
     public ResponseEntity<?> findAll() { // digunakan untuk menampikan data
         List<User> users = userRepository.findAll();
         if (users.isEmpty()) {
@@ -47,18 +46,28 @@ public class UserService {
         }
     }
 
-    public ResponseEntity<?> update(User user) { // digunakan untuk updata/merubah data
+    public ResponseEntity<?> update(int user_id, User user) { // digunakan untuk updata/merubah data
         if (!StringUtils.hasText(user.getUsername())) { // membandikan data tidak null dengan identifikasi !StringUtils.hasText bertipe data stiring a
             throw new BadRequestException("username is not null");
         } else if (!StringUtils.hasText(user.getPassword())) {
             throw new BadRequestException("password is not null");
-        } else {
+        }
+
+        Optional<User> optionalUser = userRepository.findById(user_id);
+        if (optionalUser.isPresent()) {
+            User existingData = optionalUser.get();
+            existingData.setUsername(user.getUsername());
+            existingData.setPassword(user.getPassword());
+            existingData.setEmail(user.getEmail());
+            existingData.setRole(user.getRole());
             userRepository.save(user);
             return ResponseEntity.ok().body(new MessageResponse("200", "success"));
+        } else {
+            throw new RecouseNotFoundException("id :" + user_id + " is not exis");
         }
     }
 
-    public ResponseEntity<?> deleteById(long user_id) { // digunakan untuk menghapus berdasarkan dengan id
+    public ResponseEntity<?> deleteById(int user_id) { // digunakan untuk menghapus berdasarkan dengan id
         if (userRepository.existsById(user_id)) {
             userRepository.deleteById(user_id);
             return ResponseEntity.ok().body(new MessageResponse("200", "success"));

@@ -3,6 +3,7 @@ package mcrmilenial.appsebookViewerbackend.securitys;
 import mcrmilenial.appsebookViewerbackend.securitys.jwt.AccessDeniedHandlerJwt;
 import mcrmilenial.appsebookViewerbackend.securitys.jwt.AuthEntryPointJwt;
 import mcrmilenial.appsebookViewerbackend.securitys.jwt.AuthTokenFilter;
+import mcrmilenial.appsebookViewerbackend.securitys.jwt.ExceptionHandlerJwt;
 import mcrmilenial.appsebookViewerbackend.securitys.services.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -78,12 +79,16 @@ public class WebSecurityConfig {
     AuthenticationManager authenticationManager(AuthenticationConfiguration authentication) throws Exception {
         return authentication.getAuthenticationManager();
     }
+    @Bean
+    public ExceptionHandlerJwt exceptionHandler() {
+        return new ExceptionHandlerJwt();
+    }
 
     @Bean
     public CorsFilter corsFilter() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
-        config.addAllowedOrigin("http://192.168.1.8:8080");
+        config.addAllowedOrigin("http://10.10.16.38:8080");
         config.setAllowCredentials(true);
         config.addAllowedHeader("*");
         config.addAllowedMethod("OPTIONS");

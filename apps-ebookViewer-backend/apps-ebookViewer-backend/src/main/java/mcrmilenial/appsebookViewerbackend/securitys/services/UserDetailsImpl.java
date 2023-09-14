@@ -3,13 +3,14 @@ package mcrmilenial.appsebookViewerbackend.securitys.services;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
+import mcrmilenial.appsebookViewerbackend.entities.Roles;
 import mcrmilenial.appsebookViewerbackend.entities.User;
+import mcrmilenial.appsebookViewerbackend.models.StatusRoles;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Data
@@ -21,9 +22,9 @@ public class UserDetailsImpl implements UserDetails {
     private String username;
 
     private String email;
-
     @JsonIgnore
     private String password;
+    public static Set<StatusRoles> grantedRoles = new HashSet<>();
 
     private Collection<? extends GrantedAuthority> authorities;
 
@@ -38,9 +39,9 @@ public class UserDetailsImpl implements UserDetails {
     }
 
     public static UserDetailsImpl build(User user) {
-        List<GrantedAuthority> authorities = user.getRoles().stream()
-                .map(role -> new SimpleGrantedAuthority(role.getName().name()))
-                .collect(Collectors.toList());
+        List<GrantedAuthority> authorities = Collections.singletonList(
+                new SimpleGrantedAuthority(user.getRole().getName())
+        );
 
         return new UserDetailsImpl(
                 user.getUser_id(),

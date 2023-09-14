@@ -15,23 +15,24 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserService userService;
-
-    @PostMapping(path = "/addUser")
+    @PostMapping(path = "/user")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<?> creteUser(@RequestBody User user) {
         return userService.create(user);
     }
-
-    @GetMapping(path = "/getUser")
+    @GetMapping(path = "/user")
+    @PreAuthorize("hasAnyAuthority('ADMIN','DOSEN','MAHASISWA')")
     public ResponseEntity<?> findAll() {
         return userService.findAll();
     }
-
-    @PutMapping(path = "/updateUser")
-    public ResponseEntity<?> updateUser(@RequestBody User user) {
-        return userService.update(user);
+    @PutMapping(path = "/user/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public ResponseEntity<?> updateUser(@PathVariable("id") int user_id,@RequestBody User user) {
+        ResponseEntity<?> response = userService.update(user_id, user);
+        return response;
     }
-
-    @DeleteMapping(path = "/deleteUser/{id}")
+    @DeleteMapping(path = "/user/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<?> deleteById(@PathVariable("id") int user_id) {
         return userService.deleteById(user_id);
     }

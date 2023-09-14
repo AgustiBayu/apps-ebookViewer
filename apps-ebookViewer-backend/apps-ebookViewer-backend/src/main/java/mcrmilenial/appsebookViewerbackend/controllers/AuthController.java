@@ -1,8 +1,8 @@
 package mcrmilenial.appsebookViewerbackend.controllers;
 
-import mcrmilenial.appsebookViewerbackend.entities.Role;
+import mcrmilenial.appsebookViewerbackend.entities.Roles;
 import mcrmilenial.appsebookViewerbackend.entities.User;
-import mcrmilenial.appsebookViewerbackend.models.StatusRoles;
+import mcrmilenial.appsebookViewerbackend.exeptions.BadRequestException;
 import mcrmilenial.appsebookViewerbackend.models.response.JwtResponse;
 import mcrmilenial.appsebookViewerbackend.models.request.LoginRequest;
 import mcrmilenial.appsebookViewerbackend.models.request.SignUpRequest;
@@ -23,9 +23,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @RestController
@@ -33,16 +31,14 @@ import java.util.stream.Collectors;
 public class AuthController {
     @Autowired
     UserService userService;
-
+    @Autowired
+    RoleRepository roleRepository;
     @Autowired
     PasswordEncoder passwordEncoder;
     @Autowired
     AuthenticationManager authenticationManager;
     @Autowired
     UserRepository userRepository;
-
-    @Autowired
-    RoleRepository roleRepository;
 
     @Autowired
     JwtUtils jwtUtils;
@@ -54,17 +50,16 @@ public class AuthController {
         try {
             Authentication authentication = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
-
             SecurityContextHolder.getContext().setAuthentication(authentication);
             String token = jwtUtils.generateJwtToken(authentication);
-
             UserDetailsImpl principal = (UserDetailsImpl) authentication.getPrincipal();
             List<String> roles = principal.getAuthorities().stream()
                     .map(item -> item.getAuthority())
                     .collect(Collectors.toList());
-            MessageResponse messageResponse = new MessageResponse("200", "success");
-            return ResponseEntity.ok().body(new JwtResponse(token, principal.getUsername(), principal.getEmail(), roles.get(0), messageResponse));
-        } catch (AuthenticationException exception) {
+                //String userRole = roles.isEmpty() ? "Failed Login" : roles.get(0);
+                MessageResponse messageResponse = new MessageResponse("200", "success");
+                return ResponseEntity.ok().body(new JwtResponse(token, principal.getUsername(), principal.getEmail(), roles.get(0), messageResponse));
+            } catch (AuthenticationException exception) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new MessageResponse("401", "Authorization"));
         }
     }
@@ -77,45 +72,19 @@ public class AuthController {
             } else if (userRepository.existsByEmail(signUpRequest.getEmail())) {
                 return ResponseEntity.badRequest().body(new MessageResponse("400", "Error: Email Is Alredy"));
             }
-            User user = new User(
-                    signUpRequest.getUsername(),
-                    encoder.encode(signUpRequest.getPassword()),
-                    signUpRequest.getEmail()
-            );
-            Set<String> userRoles = signUpRequest.getRoles();
-            Set<Role> roles = new HashSet<>();
-            if (userRoles == null) {
-                Role mahasiswaRole = roleRepository.findByName(StatusRoles.MAHASISWA)
-                        .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-                roles.add(mahasiswaRole);
-            } else {
-                userRoles.forEach(role -> {
-                    switch (role) {
-                        case "ADMIN":
-                            Role adminRole = roleRepository.findByName(StatusRoles.ADMIN)
-                                    .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-                            roles.add(adminRole);
+            User user = new User();
+            user.setUsername(signUpRequest.getUsername());
+            user.setPassword(encoder.encode(signUpRequest.getPassword()));
+            user.setEmail(signUpRequest.getEmail());
+            Roles userRole = roleRepository.findById(signUpRequest.getRole_id()).orElse(null);
+            user.setRole(userRole);
 
-                            break;
-                        case "DOSEN":
-                            Role dosenRole = roleRepository.findByName(StatusRoles.DOSEN)
-                                    .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-                            roles.add(dosenRole);
-
-                            break;
-                        default:
-                            Role mahasiswaRole = roleRepository.findByName(StatusRoles.MAHASISWA)
-                                    .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-                            roles.add(mahasiswaRole);
-                    }
-                });
-            }
-            user.setRoles(roles);
+            // Simpan user ke database
             userRepository.save(user);
-
             //return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
             return ResponseEntity.ok().body(new MessageResponse("200", "User registered successfullt!"));
-        } catch (AuthenticationException exception) {
+
+         } catch (AuthenticationException exception) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new MessageResponse("401", "Authorization"));
         }
     }

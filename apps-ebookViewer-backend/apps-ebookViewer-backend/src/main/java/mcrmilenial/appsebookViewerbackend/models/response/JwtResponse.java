@@ -1,9 +1,11 @@
 package mcrmilenial.appsebookViewerbackend.models.response;
 
 import lombok.Data;
+import mcrmilenial.appsebookViewerbackend.entities.Roles;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Optional;
 
 @Data
 public class JwtResponse implements Serializable {
