@@ -22,8 +22,9 @@ public class Bibliographic {
     private String subjek;
     private String image;
     private String file;
+
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    public User user;
 
 }

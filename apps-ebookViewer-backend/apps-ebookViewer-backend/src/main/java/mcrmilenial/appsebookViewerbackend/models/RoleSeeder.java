@@ -14,9 +14,14 @@ public class RoleSeeder implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         for (StatusRoles status : StatusRoles.values()) {
-            Roles role = new Roles();
-            role.setName(String.valueOf(status));
-            roleRepository.save(role);
+            String roleName = String.valueOf(status);
+            if (!roleRepository.existsByName(roleName)) {
+                Roles role = new Roles();
+                role.setName(roleName);
+                roleRepository.save(role);
+            } else{
+                System.out.println("data is alredy");
+            }
         }
     }
 }

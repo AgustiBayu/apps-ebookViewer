@@ -14,4 +14,6 @@ import java.util.Optional;
 @Repository
 public interface RoleRepository extends JpaRepository<Roles, Integer> { // role identifikasi kelas dan long merupkan tipe data primerykey
     Optional<Roles> findByName(StatusRoles name); //dugunakan untuk mencari data field enum pada model yang sudah ditetapkan
+
+    boolean existsByName(String name);
 }
